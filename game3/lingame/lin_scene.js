@@ -14,6 +14,10 @@ class LinScene {
     this.elements.push(img)
   }
 
+  removeElement(ele) {
+    this.elements.pop()
+  }
+
   draw() {
     for (var i = 0; i < this.elements.length; i++) {
       var e = this.elements[i]

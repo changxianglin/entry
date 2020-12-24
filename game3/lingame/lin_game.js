@@ -42,7 +42,7 @@ class LinGame {
     this.actions[key] = callback
   }
   runloop = () => {
-    log(window.fps)
+    // log(window.fps)
     // events
     var g = this
     var actions = Object.keys(g.actions)

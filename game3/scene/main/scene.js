@@ -17,6 +17,7 @@ class Bullet extends LinImage {
   }
   update() {
     this.y -= this.speed
+    // log('子弹检测相撞', this.y)
   }
 }
 
@@ -65,7 +66,7 @@ class Player extends LinImage {
 
 class Enemy extends LinImage {
   constructor(game) {
-    var type = randomBetween(0, 4)
+    var type = randomBetween(0, 1)
     var name = 'enemy' + type
     super(game, name)
     this.setup()
@@ -87,9 +88,9 @@ class Enemy extends LinImage {
   gameOver() {
     // 游戏要结束掉
     if (this.y > 460) {
-      log('游戏结束')
-      var s = SceneEnd.new(this.game)
-      this.game.replaceScene(s)
+      // log('游戏结束')
+      // var s = SceneEnd.new(this.game)
+      // this.game.replaceScene(s)
     }
   }
 }
@@ -144,9 +145,9 @@ class Scene extends LinScene {
   }
   setup() {
     var game = this.game
-    this.numberOfEnemies = 1
+    this.numberOfEnemies = 2
     this.bg = LinImage.new(game, 'sky')
-    this.cloud = Cloud.new(game, 'cloud')
+    // this.cloud = Cloud.new(game, 'cloud')
     // this.player = LinImage.new(game, 'player')
     // this.player.x = 100
     // this.player.y = 150
@@ -155,10 +156,11 @@ class Scene extends LinScene {
     this.player.y = 460
 
     this.addElements(this.bg)
-    this.addElements(this.cloud)
+    // this.addElements(this.cloud)
     this.addElements(this.player)
     //
     this.addEnemies()
+    // this.elements.forEach(item => log('原酸遍历', item))
   }
   addEnemies() {
     var es = []
@@ -172,6 +174,16 @@ class Scene extends LinScene {
 
   update() {
     super.update()
-    this.cloud.y += 1
+    // this.cloud.y += 1
+    this.colle()
+  }
+
+  colle() {
+    log(this.elements)
+    this.elements.forEach((item, index) => {
+      if(index > 1 && item.y < 520) {
+        log(item.y)
+      }
+    })
   }
 }
